@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+html, body {
+  height: 100vh;
+
+}
+
+.cards .MuiMobileStepper-root {
+  opacity: 0;
+  transition: all ease 1000ms;
+}
+
+.cards:hover .MuiMobileStepper-root {
+  opacity:1
+}
+
+.cards:hover .MuiMobileStepper-dotActive {
+  background-color: #fff
+}
