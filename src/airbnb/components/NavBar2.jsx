@@ -34,6 +34,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useDispatch } from "react-redux";
 import { onSelectedButton } from "../../store/airbnb/botonesSlice";
 import { FaFilter } from "react-icons/fa";
+import { flexCenter, fullWidthFlex, justifyCenter } from '../../theme/commonStyles'
 
 const options = [
     "Iniciar Sesion",
@@ -113,21 +114,13 @@ export const NavBar2 = () => {
             setOpen(false);
         };
 
-        useEffect(() => {
-            const handleClickOutside = (event) => {
-              if (!event.target.closest('.botones')) {
-                dispatch(onSelectedButton(null));
-              }
-            };
-        
-            document.addEventListener('click', handleClickOutside);
-        
-            return () => {
-              document.removeEventListener('click', handleClickOutside);
-            };
-          }, [dispatch]);
+        const handleClickAway = () => {
+            dispatch(onSelectedButton(null));
+          };
+
 
   return (
+    <ClickAwayListener onClickAway={handleClickAway}>
     <AppBar position='sticky' color='default'>
         <Toolbar>
                     <Grid container justify="space-between">
@@ -351,6 +344,19 @@ export const NavBar2 = () => {
                         </Grid>
                     </Grid>
                 </Toolbar>
+
+                <Toolbar>
+                    <Stack sx={fullWidthFlex} direction='row' justifyContent={'center'}>
+                        <ButtonGroup sx={flexCenter}>
+                            <Button>Lugar</Button>
+                            <Button>Check-in</Button>
+                            <Button>Check-out</Button>
+                            <Button>Viajeros</Button>
+                        </ButtonGroup>
+                        <Button>Buscar</Button>
+                    </Stack>
+                </Toolbar>
     </AppBar>
+    </ClickAwayListener>
   )
 }
